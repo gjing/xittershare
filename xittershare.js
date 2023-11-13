@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Swap x.com copy link
 // @namespace    https://github.com/gjing/xittershare
-// @version      1.0
+// @version      1.1
 // @description  Replace `x` to `vxtwitter` when clicking 'Copy Link'
 // @author       gjing
 // @match        https://twitter.com/*
@@ -23,8 +23,8 @@ const replacement = 'vxtwitter';
     });
 
     function replace_x(selected) {
-        if (selected.match(/^https+:\/\/((.+)\.)?x\.com\/(.+)\/status\/(\d+)(\?.+)?$/)) {
-            let newUrl = selected.replace(/^https+:\/\/((.+)\.)?x\.com\/(.+)\/status\/(\d+)(\?.+)?$/, ['https://', replacement, '.com/$3/status/$4'].join(''));
+        if (selected.match(/^https+:\/\/((.+)\.)?(twitter|x)\.com\/(.+)\/status\/(\d+)(\?.+)?$/)) {
+            let newUrl = selected.replace(/^https+:\/\/((.+)\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.com\/(.+)\/status\/(\d+)(\?.+)?$/, ['https://', replacement, '.com/$3/status/$4'].join(''));
             navigator.clipboard.writeText(newUrl);
             return;
         }
